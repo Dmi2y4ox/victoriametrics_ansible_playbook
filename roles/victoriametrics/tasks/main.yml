@@ -1,0 +1,19 @@
+- include_tasks: victoriametrics.yml
+  tags:
+    - all
+    - victoriametrics
+    
+- include_tasks: vmstorage.yml
+  tags:
+    - all
+    - vmstorage
+
+- include_tasks: vminsert.yml
+  tags:
+    - all
+    - vminsert
+    
+- include_tasks: vmselect.yml
+  tags:
+    - all
+    - vmselect

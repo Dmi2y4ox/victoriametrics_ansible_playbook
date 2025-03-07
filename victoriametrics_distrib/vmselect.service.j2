@@ -1,0 +1,18 @@
+[Unit]
+Description=VictoriaMetrics vmselect service
+After=network.target
+
+[Service]
+Type=simple
+User={{ victoriametrics_user }}
+Group={{ victoriametrics_user }}
+Restart=always
+ExecStart=/usr/local/bin/vmselect-prod {% for host in groups['victoriametrics'] %} -storageNode={{ hostvars[host]['ansible_host'] }}:8400{% endfor %} -cacheDataPath={{ vmselect_data_dir }}
+
+PrivateTmp=yes
+NoNewPrivileges=yes
+
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

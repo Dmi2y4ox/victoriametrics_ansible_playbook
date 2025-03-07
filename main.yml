@@ -1,0 +1,5 @@
+---
+- name: Install victoriametrics
+  hosts: victoriametrics
+  roles:
+    - {role: 'victoriametrics', tags: "victoriametrics"}

@@ -1,0 +1,30 @@
+---
+- name: Copy service
+  template:
+    src: "{{ victorimetrics_distrib_dir }}/vminsert.service.j2"
+    dest: "/etc/systemd/system/vminsert.service"
+  become: yes
+  tags:
+    - all
+    - vminsert
+    
+- name: Reload daemon
+  command: "systemctl daemon-reload"
+  become: yes
+  tags:
+    - all
+    - vminsert
+    
+- name: Enabled vminsert
+  command: "systemctl enable vminsert"
+  become: yes
+  tags:
+    - all
+    - vminsert
+    
+- name: Start vminsert
+  command: "systemctl start vminsert"
+  become: yes
+  tags:
+    - all
+    - vminsert

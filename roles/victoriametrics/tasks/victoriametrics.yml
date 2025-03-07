@@ -1,0 +1,20 @@
+---
+
+- name: Unpack victoriametrics
+  unarchive:
+    src: "{{ victorimetrics_distrib_dir }}/victoria-metrics-{{ os }}-{{ arch_os }}-v{{ victorialogs_version }}-cluster.tar.gz"
+    dest: "{{ victorimetrics_install_dir }}"
+  become: yes
+  tags:
+    - all
+    - victoriametrics
+    
+- name: Create user {{ victoriametrics_user }} with no login shell
+  user:
+    name: "{{ victoriametrics_user }}"
+    shell: /usr/sbin/nologin
+    state: present
+  become: yes
+  tags:
+    - all
+    - victoriametrics

@@ -1,0 +1,9 @@
+victorimetrics_distrib_dir: victoriametrics_distrib
+victorimetrics_install_dir: /usr/local/bin
+vmstorage_data_dir: /var/lib/vmstorage
+vmselect_data_dir: /var/lib/vmselect-cache
+
+victoriametrics_user: victoriametrics
+victorialogs_version: 1.112.0
+arch_os: amd64
+os: linux

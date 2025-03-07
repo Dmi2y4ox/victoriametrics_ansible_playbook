@@ -1,0 +1,42 @@
+---
+- name: Make dir "{{ vmselect_data_dir }}"
+  file:
+    path: "{{ vmselect_data_dir }}"
+    state: directory
+    mode: '0766'
+    owner: "{{ victoriametrics_user }}"
+    group: "{{ victoriametrics_user }}"
+  become: yes
+  tags:
+    - all
+    - vmselect
+
+- name: Copy service
+  template:
+    src: "{{ victorimetrics_distrib_dir }}/vmselect.service.j2"
+    dest: "/etc/systemd/system/vmselect.service"
+  become: yes
+  tags:
+    - all
+    - vmselect
+    
+- name: Reload daemon
+  command: "systemctl daemon-reload"
+  become: yes
+  tags:
+    - all
+    - vmselect
+    
+- name: Enabled vmselect
+  command: "systemctl enable vmselect"
+  become: yes
+  tags:
+    - all
+    - vmselect
+    
+- name: Start vmselect
+  command: "systemctl start vmselect"
+  become: yes
+  tags:
+    - all
+    - vmselect

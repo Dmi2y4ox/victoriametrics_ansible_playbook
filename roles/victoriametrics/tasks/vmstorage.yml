@@ -1,0 +1,41 @@
+- name: Make dir "{{ vmstorage_data_dir }}"
+  file:
+    path: "{{ vmstorage_data_dir }}"
+    state: directory
+    mode: '0766'
+    owner: "{{ victoriametrics_user }}"
+    group: "{{ victoriametrics_user }}"
+  become: yes
+  tags:
+    - all
+    - vmstorage
+    
+- name: Copy service
+  template:
+    src: "{{ victorimetrics_distrib_dir }}/vmstorage.service.j2"
+    dest: "/etc/systemd/system/vmstorage.service"
+  become: yes
+  tags:
+    - all
+    - vmstorage
+    
+- name: Reload daemon
+  command: "systemctl daemon-reload"
+  become: yes
+  tags:
+    - all
+    - vmstorage
+    
+- name: Enabled vmstorage
+  command: "systemctl enable vmstorage"
+  become: yes
+  tags:
+    - all
+    - vmstorage
+    
+- name: Start vmstorage
+  command: "systemctl start vmstorage"
+  become: yes
+  tags:
+    - all
+    - vmstorage

@@ -1,0 +1,17 @@
+[Unit]
+Description=VictoriaMetrics vmstorage service
+After=network.target
+
+[Service]
+Type=simple
+User={{ victoriametrics_user }}
+Group={{ victoriametrics_user }}
+Restart=always
+ExecStart=/usr/local/bin/vmstorage-prod -retentionPeriod=90d -storageDataPath={{ vmstorage_data_dir }}
+
+PrivateTmp=yes
+NoNewPrivileges=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
