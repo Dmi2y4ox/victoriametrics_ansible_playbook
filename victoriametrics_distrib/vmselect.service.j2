@@ -7,7 +7,7 @@ Type=simple
 User={{ victoriametrics_user }}
 Group={{ victoriametrics_user }}
 Restart=always
-ExecStart=/usr/local/bin/vmselect-prod {% for host in groups['victoriametrics'] %} -storageNode={{ hostvars[host]['ansible_host'] }}:8400{% endfor %} -cacheDataPath={{ vmselect_data_dir }}
+ExecStart=/usr/local/bin/vmselect-prod {% for host in groups['victoriametrics'] %} -storageNode={{ hostvars[host]['ansible_host'] }}:8401{% endfor %} -cacheDataPath={{ vmselect_data_dir }}
 
 PrivateTmp=yes
 NoNewPrivileges=yes
